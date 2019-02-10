@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <link href="https://cdn.botframework.com/botframework-webchat/latest/botchat.css" rel="stylesheet" />
+	<style>
+        .wc-chatview-panel {
+            width: 350px;
+            height: 450px;
+            position: relative;			
+        }
+
+        #bot {
+            position: fixed;
+            bottom: 0;
+            right: 0;			
+        }
+
+        .closechat {
+            top: 405px !important;
+        }
+    </style>
+  </head>
+  <body>
+    <div id="bot"/>
+    <script src="https://cdn.botframework.com/botframework-webchat/latest/botchat.js"></script>
+    <script>
+	
+	  var user = {
+            id: 'oyen@id.com',
+            name: 'Oyen'
+      };
+	  
+	   var botConnection = new BotChat.DirectLine({
+            token: 'SECRETHERE' ,
+            user: user
+        });
+	
+      BotChat.App({
+        user: user,
+        botConnection: botConnection,
+        bot: { id: 'botid' },
+        resize: 'detect',
+      }, document.getElementById("bot"));	  
+    </script>
+  </body>
+</html>
