@@ -1,17 +1,9 @@
 ﻿// Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 
-using System;
-using System.Linq;
-using EnterpriseBot1.Dialogs.Main.Resources;
 using EnterpriseBot1.Dialogs.Shared;
-using EnterpriseBot1.Middleware.Telemetry;
-using Microsoft.ApplicationInsights;
-using Microsoft.ApplicationInsights.DependencyCollector;
-using Microsoft.ApplicationInsights.Extensibility;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.Http;
 using Microsoft.Bot.Builder;
 using Microsoft.Bot.Builder.Azure;
 using Microsoft.Bot.Builder.Dialogs;
@@ -21,6 +13,8 @@ using Microsoft.Bot.Connector.Authentication;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
+using System;
+using System.Linq;
 
 namespace EnterpriseBot1
 {
@@ -73,10 +67,6 @@ namespace EnterpriseBot1
             };
             services.AddSingleton(stateBotAccessors);
 
-            //services.AddSingleton(userState);
-            //services.AddSingleton(conversationState);
-            //services.AddSingleton(new BotStateSet(userState, conversationState));
-
             // Add the bot with options
             services.AddBot<EnterpriseBot1>(options =>
             {
@@ -90,29 +80,12 @@ namespace EnterpriseBot1
 
                 options.CredentialProvider = new SimpleCredentialProvider(endpointService.AppId, endpointService.AppPassword);
 
-                // Telemetry Middleware (logs activity messages in Application Insights)
-                //var appInsightsService = botConfig.Services.FirstOrDefault(s => s.Type == ServiceTypes.AppInsights) ?? throw new Exception("Please configure your AppInsights connection in your .bot file.");
-                //var instrumentationKey = (appInsightsService as AppInsightsService).InstrumentationKey;
-                //var appInsightsLogger = new TelemetryLoggerMiddleware(instrumentationKey, logUserName: true, logOriginalMessage: true);
-                //options.Middleware.Add(appInsightsLogger);
-
                 // Catches any errors that occur during a conversation turn and logs them to AppInsights.
                 options.OnTurnError = async (context, exception) =>
                 {
-                    await context.SendActivityAsync(MainStrings.ERROR);
+                    await context.SendActivityAsync($"Exception: {exception}");
                     connectedServices.TelemetryClient.TrackException(exception);
                 };
-
-                // Transcript Middleware (saves conversation history in a standard format)
-                var storageService = botConfig.Services.FirstOrDefault(s => s.Type == ServiceTypes.BlobStorage) ?? throw new Exception("Please configure your Azure Storage service in your .bot file.");
-                var blobStorage = storageService as BlobStorageService;
-                var transcriptStore = new AzureBlobTranscriptStore(blobStorage.ConnectionString, blobStorage.Container);
-                var transcriptMiddleware = new TranscriptLoggerMiddleware(transcriptStore);
-                options.Middleware.Add(transcriptMiddleware);
-
-                // Typing Middleware (automatically shows typing when the bot is responding/working)
-                var typingMiddleware = new ShowTypingMiddleware();
-                options.Middleware.Add(typingMiddleware);
 
                 options.Middleware.Add(new AutoSaveStateMiddleware(userState, conversationState));
             });

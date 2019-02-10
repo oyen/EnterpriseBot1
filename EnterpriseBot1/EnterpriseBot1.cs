@@ -18,8 +18,6 @@ namespace EnterpriseBot1
     public class EnterpriseBot1 : IBot
     {
         private readonly BotServices _services;
-        private readonly ConversationState _conversationState;
-        private readonly UserState _userState;
         private DialogSet _dialogs;
 
         /// <summary>

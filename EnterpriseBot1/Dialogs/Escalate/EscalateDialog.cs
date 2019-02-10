@@ -8,13 +8,12 @@ using Microsoft.Bot.Builder.Dialogs;
 
 namespace EnterpriseBot1.Dialogs.Escalate
 {
-    public class EscalateDialog : EnterpriseDialog
+    public class EscalateDialog : ComponentDialog
     {
-        private EscalateResponses _responder = new EscalateResponses();
         private StateBotAccessors _accessors;
 
         public EscalateDialog(BotServices botServices, StateBotAccessors stateBotAccessors)
-            : base(botServices, nameof(EscalateDialog))
+            : base(nameof(EscalateDialog))
         {
             _accessors = stateBotAccessors;
 
@@ -30,8 +29,6 @@ namespace EnterpriseBot1.Dialogs.Escalate
 
         private async Task<DialogTurnResult> SendPhone(WaterfallStepContext sc, CancellationToken cancellationToken)
         {
-            // await _responder.ReplyWith(sc.Context, EscalateResponses.ResponseIds.SendPhoneMessage);
-
             var conversationState = await _accessors.ConversationDataAccessor.GetAsync(sc.Context, () => null);
             var userProfile = await _accessors.UserProfileAccessor.GetAsync(sc.Context, () => null);
 

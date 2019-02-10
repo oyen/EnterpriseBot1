@@ -3,6 +3,58 @@
   <PropertyGroup>
     <TargetFramework>netcoreapp2.1</TargetFramework>
   </PropertyGroup>
+
+  <ItemGroup>
+    <Compile Remove="CognitiveModels\**" />
+    <Compile Remove="DeploymentScripts\**" />
+    <Compile Remove="Dialogs\Authentication\**" />
+    <Compile Remove="Dialogs\Cancel\**" />
+    <Compile Remove="Dialogs\Escalate\Resources\**" />
+    <Compile Remove="Dialogs\Main\Resources\**" />
+    <Compile Remove="Dialogs\Onboarding\**" />
+    <Compile Remove="Dialogs\Shared\Resources\**" />
+    <Compile Remove="Middleware\**" />
+    <Compile Remove="ServiceClients\**" />
+    <Content Remove="CognitiveModels\**" />
+    <Content Remove="DeploymentScripts\**" />
+    <Content Remove="Dialogs\Authentication\**" />
+    <Content Remove="Dialogs\Cancel\**" />
+    <Content Remove="Dialogs\Escalate\Resources\**" />
+    <Content Remove="Dialogs\Main\Resources\**" />
+    <Content Remove="Dialogs\Onboarding\**" />
+    <Content Remove="Dialogs\Shared\Resources\**" />
+    <Content Remove="Middleware\**" />
+    <Content Remove="ServiceClients\**" />
+    <EmbeddedResource Remove="CognitiveModels\**" />
+    <EmbeddedResource Remove="DeploymentScripts\**" />
+    <EmbeddedResource Remove="Dialogs\Authentication\**" />
+    <EmbeddedResource Remove="Dialogs\Cancel\**" />
+    <EmbeddedResource Remove="Dialogs\Escalate\Resources\**" />
+    <EmbeddedResource Remove="Dialogs\Main\Resources\**" />
+    <EmbeddedResource Remove="Dialogs\Onboarding\**" />
+    <EmbeddedResource Remove="Dialogs\Shared\Resources\**" />
+    <EmbeddedResource Remove="Middleware\**" />
+    <EmbeddedResource Remove="ServiceClients\**" />
+    <None Remove="CognitiveModels\**" />
+    <None Remove="DeploymentScripts\**" />
+    <None Remove="Dialogs\Authentication\**" />
+    <None Remove="Dialogs\Cancel\**" />
+    <None Remove="Dialogs\Escalate\Resources\**" />
+    <None Remove="Dialogs\Main\Resources\**" />
+    <None Remove="Dialogs\Onboarding\**" />
+    <None Remove="Dialogs\Shared\Resources\**" />
+    <None Remove="Middleware\**" />
+    <None Remove="ServiceClients\**" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Compile Remove="Dialogs\Escalate\EscalateResponses.cs" />
+    <Compile Remove="Dialogs\Main\MainResponses.cs" />
+    <Compile Remove="Dialogs\Shared\EnterpriseDialog.cs" />
+    <Compile Remove="Dialogs\Shared\InterruptableDialog.cs" />
+    <Compile Remove="Dialogs\Shared\InterruptionStatus.cs" />
+    <Compile Remove="EnterpriseBot1State.cs" />
+  </ItemGroup>
   
   <ItemGroup>
     <PackageReference Include="AdaptiveCards" Version="1.1.0" />
@@ -25,57 +77,6 @@
     <PackageReference Include="Microsoft.Extensions.Logging" Version="2.1.1" />
     <PackageReference Include="Microsoft.Extensions.Options" Version="2.1.1" />
     <PackageReference Include="Microsoft.Graph" Version="1.10.0" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <Compile Update="Dialogs\Authentication\Resources\AuthenticationStrings.Designer.cs">
-      <DesignTime>True</DesignTime>
-      <AutoGen>True</AutoGen>
-      <DependentUpon>AuthenticationStrings.resx</DependentUpon>
-    </Compile>
-    <Compile Update="Dialogs\Cancel\Resources\CancelStrings.Designer.cs">
-      <DesignTime>True</DesignTime>
-      <AutoGen>True</AutoGen>
-      <DependentUpon>CancelStrings.resx</DependentUpon>
-    </Compile>
-    <Compile Update="Dialogs\Escalate\Resources\EscalateStrings.Designer.cs">
-      <DesignTime>True</DesignTime>
-      <AutoGen>True</AutoGen>
-      <DependentUpon>EscalateStrings.resx</DependentUpon>
-    </Compile>
-    <Compile Update="Dialogs\Main\Resources\MainStrings.Designer.cs">
-      <DesignTime>True</DesignTime>
-      <AutoGen>True</AutoGen>
-      <DependentUpon>MainStrings.resx</DependentUpon>
-    </Compile>
-    <Compile Update="Dialogs\Onboarding\Resources\OnboardingStrings.Designer.cs">
-      <DesignTime>True</DesignTime>
-      <AutoGen>True</AutoGen>
-      <DependentUpon>OnboardingStrings.resx</DependentUpon>
-    </Compile>
-  </ItemGroup>
-
-  <ItemGroup>
-    <EmbeddedResource Update="Dialogs\Cancel\Resources\CancelStrings.resx">
-      <Generator>PublicResXFileCodeGenerator</Generator>
-      <LastGenOutput>CancelStrings.Designer.cs</LastGenOutput>
-    </EmbeddedResource>
-    <EmbeddedResource Update="Dialogs\Escalate\Resources\EscalateStrings.resx">
-      <Generator>PublicResXFileCodeGenerator</Generator>
-      <LastGenOutput>EscalateStrings.Designer.cs</LastGenOutput>
-    </EmbeddedResource>
-    <EmbeddedResource Update="Dialogs\Main\Resources\MainStrings.resx">
-      <Generator>PublicResXFileCodeGenerator</Generator>
-      <LastGenOutput>MainStrings.Designer.cs</LastGenOutput>
-    </EmbeddedResource>
-    <EmbeddedResource Update="Dialogs\Onboarding\Resources\OnboardingStrings.resx">
-      <Generator>PublicResXFileCodeGenerator</Generator>
-      <LastGenOutput>OnboardingStrings.Designer.cs</LastGenOutput>
-    </EmbeddedResource>
-    <EmbeddedResource Update="Dialogs\Authentication\Resources\AuthenticationStrings.resx">
-      <Generator>PublicResXFileCodeGenerator</Generator>
-      <LastGenOutput>AuthenticationStrings.Designer.cs</LastGenOutput>
-    </EmbeddedResource>
   </ItemGroup>
 
   <ItemGroup>

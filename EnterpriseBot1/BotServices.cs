@@ -1,11 +1,7 @@
 ﻿// Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 
-using System.Collections.Generic;
-using EnterpriseBot1.Middleware.Telemetry;
 using Microsoft.ApplicationInsights;
-using Microsoft.Bot.Builder.AI.Luis;
-using Microsoft.Bot.Builder.AI.QnA;
 using Microsoft.Bot.Configuration;
 
 namespace EnterpriseBot1
@@ -34,36 +30,6 @@ namespace EnterpriseBot1
                         {
                             var appInsights = service as AppInsightsService;
                             TelemetryClient = new TelemetryClient();
-                            break;
-                        }
-
-                    case ServiceTypes.Dispatch:
-                        {
-                            var dispatch = service as DispatchService;
-                            var dispatchApp = new LuisApplication(dispatch.AppId, dispatch.SubscriptionKey, dispatch.GetEndpoint());
-                            DispatchRecognizer = new TelemetryLuisRecognizer(dispatchApp);
-                            break;
-                        }
-
-                    case ServiceTypes.Luis:
-                        {
-                            var luis = service as LuisService;
-                            var luisApp = new LuisApplication(luis.AppId, luis.SubscriptionKey, luis.GetEndpoint());
-                            LuisServices.Add(service.Id, new TelemetryLuisRecognizer(luisApp));
-                            break;
-                        }
-
-                    case ServiceTypes.QnA:
-                        {
-                            var qna = service as QnAMakerService;
-                            var qnaEndpoint = new QnAMakerEndpoint()
-                            {
-                                KnowledgeBaseId = qna.KbId,
-                                EndpointKey = qna.EndpointKey,
-                                Host = qna.Hostname,
-                            };
-                            var qnaMaker = new TelemetryQnAMaker(qnaEndpoint);
-                            QnAServices.Add(qna.Id, qnaMaker);
                             break;
                         }
 
@@ -103,37 +69,5 @@ namespace EnterpriseBot1
         /// </value>
         public TelemetryClient TelemetryClient { get; }
 
-        /// <summary>
-        /// Gets the set of Dispatch LUIS Recognizer used.
-        /// </summary>
-        /// <remarks>The Dispatch LUIS Recognizer should not be modified while the bot is running.</remarks>
-        /// <value>
-        /// A <see cref="LuisRecognizer"/> client instance created based on configuration in the .bot file.
-        /// </value>
-        public TelemetryLuisRecognizer DispatchRecognizer { get; }
-
-        /// <summary>
-        /// Gets the set of LUIS Services used.
-        /// Given there can be multiple <see cref="TelemetryLuisRecognizer"/> services used in a single bot,
-        /// LuisServices is represented as a dictionary.  This is also modeled in the
-        /// ".bot" file since the elements are named.
-        /// </summary>
-        /// <remarks>The LUIS services collection should not be modified while the bot is running.</remarks>
-        /// <value>
-        /// A <see cref="LuisRecognizer"/> client instance created based on configuration in the .bot file.
-        /// </value>
-        public Dictionary<string, TelemetryLuisRecognizer> LuisServices { get; } = new Dictionary<string, TelemetryLuisRecognizer>();
-
-        /// <summary>
-        /// Gets the set of QnAMaker Services used.
-        /// Given there can be multiple <see cref="TelemetryQnAMaker"/> services used in a single bot,
-        /// QnAServices is represented as a dictionary.  This is also modeled in the
-        /// ".bot" file since the elements are named.
-        /// </summary>
-        /// <remarks>The QnAMaker services collection should not be modified while the bot is running.</remarks>
-        /// <value>
-        /// A <see cref="TelemetryQnAMaker"/> client instance created based on configuration in the .bot file.
-        /// </value>
-        public Dictionary<string, TelemetryQnAMaker> QnAServices { get; } = new Dictionary<string, TelemetryQnAMaker>();
     }
 }
