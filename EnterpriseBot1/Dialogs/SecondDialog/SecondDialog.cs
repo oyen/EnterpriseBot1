@@ -6,18 +6,18 @@ using System.Threading.Tasks;
 using EnterpriseBot1.Dialogs.Shared;
 using Microsoft.Bot.Builder.Dialogs;
 
-namespace EnterpriseBot1.Dialogs.Escalate
+namespace EnterpriseBot1.Dialogs.Second
 {
-    public class EscalateDialog : ComponentDialog
+    public class SecondDialog : ComponentDialog
     {
         private StateBotAccessors _accessors;
 
-        public EscalateDialog(BotServices botServices, StateBotAccessors stateBotAccessors)
-            : base(nameof(EscalateDialog))
+        public SecondDialog(BotServices botServices, StateBotAccessors stateBotAccessors)
+            : base(nameof(SecondDialog))
         {
             _accessors = stateBotAccessors;
 
-            InitialDialogId = nameof(EscalateDialog);
+            InitialDialogId = nameof(SecondDialog);
 
             var escalate = new WaterfallStep[]
             {

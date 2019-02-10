@@ -1,7 +1,7 @@
 ﻿// Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 
-using EnterpriseBot1.Dialogs.Escalate;
+using EnterpriseBot1.Dialogs.Second;
 using EnterpriseBot1.Dialogs.Shared;
 using Microsoft.Bot.Builder;
 using Microsoft.Bot.Builder.Dialogs;
@@ -24,7 +24,7 @@ namespace EnterpriseBot1.Dialogs.Main
             _services = services ?? throw new ArgumentNullException(nameof(services));
             _accessors = stateBotAccessors;
 
-            AddDialog(new EscalateDialog(_services, _accessors));
+            AddDialog(new SecondDialog(_services, _accessors));
         }
 
         protected override async Task OnStartAsync(DialogContext dc, CancellationToken cancellationToken = default(CancellationToken))
@@ -45,7 +45,7 @@ namespace EnterpriseBot1.Dialogs.Main
             // for testing
             if (dc.Context.Activity.Text == "print out state")
             {
-                await dc.BeginDialogAsync(nameof(EscalateDialog));
+                await dc.BeginDialogAsync(nameof(SecondDialog));
                 return;
             }
 

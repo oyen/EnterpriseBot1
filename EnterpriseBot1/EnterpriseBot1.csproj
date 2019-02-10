@@ -9,7 +9,7 @@
     <Compile Remove="DeploymentScripts\**" />
     <Compile Remove="Dialogs\Authentication\**" />
     <Compile Remove="Dialogs\Cancel\**" />
-    <Compile Remove="Dialogs\Escalate\Resources\**" />
+    <Compile Remove="Dialogs\SecondDialog\Resources\**" />
     <Compile Remove="Dialogs\Main\Resources\**" />
     <Compile Remove="Dialogs\Onboarding\**" />
     <Compile Remove="Dialogs\Shared\Resources\**" />
@@ -19,7 +19,7 @@
     <Content Remove="DeploymentScripts\**" />
     <Content Remove="Dialogs\Authentication\**" />
     <Content Remove="Dialogs\Cancel\**" />
-    <Content Remove="Dialogs\Escalate\Resources\**" />
+    <Content Remove="Dialogs\SecondDialog\Resources\**" />
     <Content Remove="Dialogs\Main\Resources\**" />
     <Content Remove="Dialogs\Onboarding\**" />
     <Content Remove="Dialogs\Shared\Resources\**" />
@@ -29,7 +29,7 @@
     <EmbeddedResource Remove="DeploymentScripts\**" />
     <EmbeddedResource Remove="Dialogs\Authentication\**" />
     <EmbeddedResource Remove="Dialogs\Cancel\**" />
-    <EmbeddedResource Remove="Dialogs\Escalate\Resources\**" />
+    <EmbeddedResource Remove="Dialogs\SecondDialog\Resources\**" />
     <EmbeddedResource Remove="Dialogs\Main\Resources\**" />
     <EmbeddedResource Remove="Dialogs\Onboarding\**" />
     <EmbeddedResource Remove="Dialogs\Shared\Resources\**" />
@@ -39,7 +39,7 @@
     <None Remove="DeploymentScripts\**" />
     <None Remove="Dialogs\Authentication\**" />
     <None Remove="Dialogs\Cancel\**" />
-    <None Remove="Dialogs\Escalate\Resources\**" />
+    <None Remove="Dialogs\SecondDialog\Resources\**" />
     <None Remove="Dialogs\Main\Resources\**" />
     <None Remove="Dialogs\Onboarding\**" />
     <None Remove="Dialogs\Shared\Resources\**" />
@@ -48,7 +48,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Compile Remove="Dialogs\Escalate\EscalateResponses.cs" />
+    <Compile Remove="Dialogs\SecondDialog\EscalateResponses.cs" />
     <Compile Remove="Dialogs\Main\MainResponses.cs" />
     <Compile Remove="Dialogs\Shared\EnterpriseDialog.cs" />
     <Compile Remove="Dialogs\Shared\InterruptableDialog.cs" />
